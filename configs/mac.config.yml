@@ -13,3 +13,215 @@ system_information: "AUTO_POPULATE"
 
 logging:
   file: "/Users/<USERNAME>/AITaskforce/logs/assistant.log"
+
+
+#system:
+  os: Darwin   # macOS (Darwin kernel), can be swapped with "Linux" or "Windows"
+
+app_bindings:
+  browser: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  editor: "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+  terminal: "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal"
+  default_applications:
+    pdf_viewer: "/System/Applications/Preview.app/Contents/MacOS/Preview"
+    media_player: "/Applications/VLC.app/Contents/MacOS/VLC"
+
+system_information: "AUTO_POPULATE"
+
+logging:
+  file: "/Users/<USERNAME>/AITaskforce/logs/assistant.log"
+
+# commands:
+#   # -------------------------------
+#   # 1. System Operations
+#   # -------------------------------
+#   open_app:
+#     action: "open {app_path}"
+#     description: "Opens an application by path"
+
+#   close_app:
+#     action: "osascript -e 'quit app \"{app_name}\"'"
+#     description: "Closes an application"
+
+#   increase_volume:
+#     action: "osascript -e 'set volume output volume ((output volume of (get volume settings)) + 10)'"
+#     description: "Increase system volume"
+
+#   decrease_volume:
+#     action: "osascript -e 'set volume output volume ((output volume of (get volume settings)) - 10)'"
+#     description: "Decrease system volume"
+
+#   mute_volume:
+#     action: "osascript -e 'set volume with output muted'"
+#     description: "Mute system volume"
+
+#   unmute_volume:
+#     action: "osascript -e 'set volume without output muted'"
+#     description: "Unmute system volume"
+
+#   take_screenshot:
+#     action: "screencapture ~/Desktop/screenshot_$(date +%Y%m%d%H%M%S).png"
+#     description: "Take screenshot and save to Desktop"
+
+#   shutdown:
+#     action: "osascript -e 'tell application \"System Events\" to shut down'"
+#     confirmation_required: true
+#     description: "Shutdown system"
+
+#   restart:
+#     action: "osascript -e 'tell application \"System Events\" to restart'"
+#     confirmation_required: true
+#     description: "Restart system"
+
+#   lock_system:
+#     action: "osascript -e 'tell application \"System Events\" to keystroke \"q\" using {command down, control down}'"
+#     description: "Lock the system"
+
+#   # -------------------------------
+#   # 2. File Management
+#   # -------------------------------
+#   create_folder:
+#     action: "mkdir {folder_path}"
+#     description: "Create a new folder"
+
+#   delete_file:
+#     action: "rm {file_path}"
+#     confirmation_required: true
+#     description: "Delete a file"
+
+#   rename_file:
+#     action: "mv {old_path} {new_path}"
+#     description: "Rename a file"
+
+#   move_file:
+#     action: "mv {file_path} {target_folder}"
+#     description: "Move a file"
+
+#   copy_file:
+#     action: "cp {file_path} {target_folder}"
+#     description: "Copy a file"
+
+#   search_file:
+#     action: "mdfind -name '{filename}'"
+#     description: "Search file by name"
+
+#   # -------------------------------
+#   # 3. Web & Browsing
+#   # -------------------------------
+#   open_website:
+#     action: "open {url}"
+#     description: "Open a specific website"
+
+#   search_web:
+#     action: "open 'https://www.google.com/search?q={query}'"
+#     description: "Perform a Google search"
+
+#   # -------------------------------
+#   # 4. Communication
+#   # -------------------------------
+#   open_gmail:
+#     action: "open https://mail.google.com"
+#     description: "Open Gmail in browser"
+
+#   send_whatsapp:
+#     action: "open 'https://web.whatsapp.com/send?phone={number}&text={message}'"
+#     description: "Send a WhatsApp message"
+
+#   # -------------------------------
+#   # 5. Media Control
+#   # -------------------------------
+#   play_music:
+#     action: "open -a Music"
+#     description: "Play music in Apple Music"
+
+#   pause_music:
+#     action: "osascript -e 'tell application \"Music\" to pause'"
+#     description: "Pause current music"
+
+#   next_track:
+#     action: "osascript -e 'tell application \"Music\" to next track'"
+#     description: "Skip to next track"
+
+#   previous_track:
+#     action: "osascript -e 'tell application \"Music\" to previous track'"
+#     description: "Play previous track"
+
+#   # -------------------------------
+#   # 6. Productivity
+#   # -------------------------------
+#   set_reminder:
+#     action: "osascript -e 'tell application \"Reminders\" to make new reminder with properties {name:\"{message}\"}'"
+#     description: "Set a reminder"
+
+#   add_event:
+#     action: "osascript -e 'tell application \"Calendar\" to make new event at end of events of calendar \"Home\" with properties {summary:\"{event}\", start date:(current date)}'"
+#     description: "Add a calendar event"
+
+#   take_note:
+#     action: "osascript -e 'tell application \"Notes\" to make new note at folder \"Notes\" with properties {name:\"Quick Note\", body:\"{message}\"}'"
+#     description: "Take a quick note"
+
+#   # -------------------------------
+#   # 7. Developer Tools
+#   # -------------------------------
+#   open_terminal:
+#     action: "open -a Terminal"
+#     description: "Open terminal window"
+
+#   run_python_script:
+#     action: "python3 {script_path}"
+#     description: "Run a Python script"
+
+#   git_status:
+#     action: "git -C {repo_path} status"
+#     description: "Check Git repository status"
+
+#   docker_ps:
+#     action: "docker ps"
+#     description: "List Docker containers"
+
+#   # -------------------------------
+#   # 8. System Information
+#   # -------------------------------
+#   show_time:
+#     action: "date '+%H:%M:%S'"
+#     description: "Show current time"
+
+#   show_date:
+#     action: "date '+%Y-%m-%d'"
+#     description: "Show current date"
+
+#   battery_status:
+#     action: "pmset -g batt"
+#     description: "Show battery status"
+
+#   internet_speed:
+#     action: "speedtest-cli"
+#     description: "Check internet speed"
+
+#   system_stats:
+#     action: "top -l 1 | head -n 10"
+#     description: "Show CPU and memory stats"
+
+#   # -------------------------------
+#   # 9. Fun & Extras
+#   # -------------------------------
+#   tell_joke:
+#     action: "python3 tools/jokes.py"
+#     description: "Tell a random joke"
+
+#   random_fact:
+#     action: "python3 tools/facts.py"
+#     description: "Share a random fact"
+
+#   play_game:
+#     action: "python3 tools/game.py"
+#     description: "Play a small game"
+
+#   weather_update:
+#     action: "curl wttr.in/?format=3"
+#     description: "Get weather update"
+
+#   cricket_score:
+#     action: "python3 tools/cricket.py"
+#     description: "Get cricket scores"
