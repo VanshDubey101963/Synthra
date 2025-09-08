@@ -1,2 +1,2 @@
 # AI-TaskForce
-AI assistant for Windows and Linux
+AI assistant for Windows, Linux and MacOS
