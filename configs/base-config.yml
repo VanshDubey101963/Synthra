@@ -1,12 +1,32 @@
-Username:
-  'default'
-Email:
-  'default@gmail.com'
-Phone Number:
-  9999999999
-Api key:
-  'DEFAULT-APIKEY-DEFAULT'
-Preferred Language:
-  'DEFAULT-LANGUAGE'
-Password:
-  'ADMIN-PASSWORD'
+username: "default"
+email: "default@gmail.com"
+phone_number: 9999999999
+api_key: "DEFAULT-APIKEY-DEFAULT"
+preferred_language: "DEFAULT-LANGUAGE"
+password: "ADMIN-PASSWORD"
+
+llm_configuration:
+  provider: "openai"
+  model: "gpt-4o-mini"
+
+contacts:
+  - name: "Alice"
+    phone: "9998887777"
+  - name: "Bob"
+    phone: "8887776666"
+
+logging:
+  level: "INFO"
+
+permissions:
+  filesystem: true
+  network: true
+  clipboard: false
+
+version_control:
+  assistant_version: "1.0.0"
+  config_version: "1.0"
+
+trigger_words:
+  - "Jarvis"
+  - "Hey Assistant"

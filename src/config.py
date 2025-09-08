@@ -13,6 +13,8 @@ match platform.system().lower():
          config = 'linux-config.yml'
     case 'windows':
         config = 'windows-config.yml'
+    case 'darwin':
+        config = 'mac-config.yml'
 
 # Following block import a platform-configuration yaml file which is a platform specific 
 # The configuration is stored in the configs directory inside the root directory

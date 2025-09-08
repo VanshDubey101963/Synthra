@@ -1,2 +1,15 @@
 system:
   Linux
+
+app_bindings:
+  browser: "/usr/bin/firefox"
+  editor: "/usr/bin/vim"
+  terminal: "/usr/bin/gnome-terminal"
+  default_applications:
+    pdf_viewer: "/usr/bin/evince"
+    media_player: "/usr/bin/vlc"
+
+system_information: "AUTO_POPULATE"
+
+logging:
+  file: "/home/<USERNAME>/AITaskforce/logs/assistant.log"

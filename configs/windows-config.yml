@@ -1,0 +1,15 @@
+system:
+  Windows
+
+app_bindings:
+  browser: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+  editor: "C:\\Program Files\\Notepad++\\notepad++.exe"
+  terminal: "C:\\Windows\\System32\\cmd.exe"
+  default_applications:
+    pdf_viewer: "C:\\Program Files\\Adobe\\Reader\\AcroRd32.exe"
+    media_player: "C:\\Program Files\\VideoLAN\\VLC\\vlc.exe"
+
+system_information: "AUTO_POPULATE"
+
+logging:
+  file: "C:\\Users\\<USERNAME>\\AITaskforce\\logs\\assistant.log"
