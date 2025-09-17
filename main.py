@@ -1,7 +1,4 @@
-def main():
-    pass
-
-from src.agents.supervisor_agent.supervisor import create_supervisor
+from src.cli import main
 
 if __name__ == "__main__":
-   create_supervisor(None)
+   main()
