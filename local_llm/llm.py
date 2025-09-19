@@ -19,10 +19,10 @@ def get_llm():
         )
     else:
         print("❌ Offline: Using local Ollama model")
-        return Ollama(model="llama2")
+        return Ollama(model="stablelm2:1.1b")
 
 llm = get_llm()
 
-prompt = "Explain quantum computing in simple terms."
-response = llm.invoke(prompt)
-print("\nAssistant:", response.content if hasattr(response, "content") else response)
+# prompt = "Explain quantum computing in simple terms."
+# response = llm.invoke(prompt)
+# print("\nAssistant:", response.content if hasattr(response, "content") else response)
