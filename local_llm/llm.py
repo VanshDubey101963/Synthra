@@ -11,7 +11,13 @@ def is_connected(host="8.8.8.8", port=53, timeout=3) -> bool:
         return False
 
 def get_llm():
+    if is_connected():
         return ChatGoogleGenerativeAI(
             model="gemini-2.5-flash", 
-            temperature=0.3,
+            temperature=0
         )
+    else:
+        print("❌ Offline: Using local Ollama model")
+        return Ollama(model="stablelm2:1.1b")
+
+llm = get_llm()
