@@ -1,2 +1,2 @@
-# AI-TaskForce
+# Synthra
 AI assistant for Windows, Linux and MacOS
