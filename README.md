@@ -1,2 +1,2 @@
 # Synthra
-AI assistant for Windows, Linux and MacOS
+A Agentic AI based coding and research assistant
