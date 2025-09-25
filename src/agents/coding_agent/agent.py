@@ -1,6 +1,6 @@
 
 from langchain_core.messages import HumanMessage, SystemMessage
-from local_llm.llm import get_llm
+from src.model.model import get_llm
 from langgraph.prebuilt import create_react_agent
 from src.agents.coding_agent.tool import tools
 from src.agents.coding_agent.memory import ProjectState , checkpoint

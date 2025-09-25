@@ -1,7 +1,7 @@
 from langgraph.prebuilt import create_react_agent
 from src.agents.supervisor_agent.tool import coding_agent_tool
 from langchain_core.messages import SystemMessage,HumanMessage
-from local_llm.llm import get_llm
+from src.model.model import get_llm
 
 llm = get_llm()
 

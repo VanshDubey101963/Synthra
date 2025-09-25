@@ -1,6 +1,6 @@
 import time
 import os
-from speech.speech import speech_to_text
+from src.speech.speech import speech_to_text
 from src.agents.supervisor_agent.supervisor import create_orchestrator_with_agents
 # === Function to read ASCII art from a file ===
 def load_ascii_art(file_path):
