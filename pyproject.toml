@@ -6,7 +6,7 @@ authors = [
     {name = "vanshdubey",email = "vanshdubey101963@gmail.com"},
     {name = "yugshrivastava", email = "shrivastavayug04@gmail.com"},
     {name = "viraljain", email = "viraljain4477@gmail.com"},
-    {name = "sanyambhandari", email = "sanyam280@gmail.com"}
+    {name = "sanyambhandari", email = "sanyam.code280@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.13, <4"
