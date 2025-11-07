@@ -1,46 +1,24 @@
-from langgraph.prebuilt import create_react_agent
-from src.agents.supervisor_agent.tool import coding_agent_tool
-from langchain_core.messages import SystemMessage,HumanMessage
-from src.model.model import get_llm
+from src.model.model import llm
+from src.agents.supervisor_agent.tool import delegate_to_coding_agent
+from langchain_core.messages import HumanMessage
+from src.agents.coding_agent.agent import coding_agent
+from langgraph_supervisor import create_supervisor
+from langgraph.errors import GraphRecursionError
 
-llm = get_llm()
-
-supervisor_agent = create_react_agent(
+supervisor_agent = create_supervisor(
+    [coding_agent],
     model=llm,
-    tools=[coding_agent_tool],    
+    tools=[
+        delegate_to_coding_agent
+    ]
 )
 
-def supervisor_interaction(user_input: str) -> str:
-    """Supervisor agent that decides which agent tool to use."""
-    
-    print(f"🎯 [SUPERVISOR] Processing: {user_input}")
-    print("-" * 50)
-    
-    config = {"configurable": {"thread_id": "supervisor_main"}}
-    
-    messages = [
-        SystemMessage(content=(
-            "You are an intelligent supervisor agent that delegates tasks to specialized tools\n\n"
-            "Whatever prompt user provides just give it to the tool along with whatever the tool requires\n"
-            "AVAILABLE AGENT TOOLS:\n"
-            "🔧 coding_agent_tool: For all coding, web development, APIs, databases, file creation\n"
-            "🔍 research_agent_tool: For research, documentation, technology comparisons\n"  
-        )),
-        HumanMessage(content=user_input)
-    ]
-    
-    print("🤔 [SUPERVISOR] Deciding which agent to use...")
-    
-    for mode, chunk in supervisor_agent.stream(
-        {"messages": messages},
-        config=config,
-        stream_mode=["messages", "updates"]
-    ):
-        if mode == "messages":
-            message_chunk, metadata = chunk
-            if hasattr(message_chunk, "content") and message_chunk.content:
-                # Print supervisor's reasoning (optional)
-                print(f"🧠 [SUPERVISOR]: {message_chunk.content}")
-    
-    print("✅ [SUPERVISOR] Task delegation completed")
-    return "✅ Supervisor task completed"
+supervisor_agent = supervisor_agent.compile()
+
+def create_orchestrator_with_agents(user_prompt):        
+    # user_prompt = input("Hey! What do you want me to do? : ")
+
+    try:
+        supervisor_agent.invoke({"messages": [HumanMessage(user_prompt)]}, config={"recursion_limit": 10})
+    except GraphRecursionError as e:
+        print("All tasks done")

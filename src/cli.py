@@ -23,7 +23,8 @@ def main():
     while True:
         try:
             print("🎙️ Listening for user input...")
-            user_prompt = speech_to_text()
+            # user_prompt = speech_to_text()
+            user_prompt = input("what's in your mind??: ")
             
             print(f"User said: {user_prompt}\n\n")
             print("Passing input to Supervisor agent...\n\n")

@@ -1,4 +1,5 @@
-import os, sys
+import os
+import sys
 from contextlib import contextmanager
 import speech_recognition as sr
 
@@ -18,7 +19,7 @@ def speech_to_text(lang="en-IN"):
     r = sr.Recognizer()
     with suppress_stderr():
         with sr.Microphone() as source:
-            r.adjust_for_ambient_noise(source, duration=2.5)
+            r.adjust_for_ambient_noise(source, duration=2)
             audio = r.listen(source)
     try:
         return r.recognize_google(audio, language=lang)

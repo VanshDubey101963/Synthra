@@ -3,12 +3,56 @@ import subprocess
 import json
 import shutil
 from pathlib import Path
+from langchain_community.utilities import SerpAPIWrapper
+from langchain.agents import Tool
+import os
+from typing import List
 
 BASE_DIR = Path("/home/vanshdubey/synthra/projects")
 BASE_DIR.mkdir(exist_ok=True)
 
+params = {
+    "engine": "google",
+    "num": 20,
+    "hl": "en"
+}
+
+serpapi = SerpAPIWrapper(params=params)
+
 def _project_dir(project_id: str) -> Path:
     return BASE_DIR / project_id
+
+@tool
+def list_files_tool(project_id: str, directory: str = ".") -> List[str]:
+    """
+    List files under the given directory inside the project.
+    project_id is prepended to workspace root path.
+    """
+    
+    base = os.path.join(BASE_DIR, project_id)  # example root
+    target = os.path.normpath(os.path.join(base, directory))
+    # Ensure it stays inside project directory
+    if not target.startswith(base):
+        return ["Error: path outside project root"]
+    try:
+        return os.listdir(target)
+    except Exception as e:
+        return [f"Error listing {directory}: {e}"]
+
+@tool
+def read_file_tool(project_id: str, filepath: str) -> str:
+    """
+    Read the content of a file inside the project.
+    """
+    base = os.path.join(BASE_DIR, project_id)
+    path = os.path.normpath(os.path.join(base, filepath))
+    if not path.startswith(base):
+        return f"Error: filepath {filepath} is outside project root"
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return f.read()
+    except Exception as e:
+        return f"Error reading {filepath}: {e}"
 
 @tool
 def write_files(project_id: str, files_map: str) -> str:
@@ -34,6 +78,7 @@ def write_files(project_id: str, files_map: str) -> str:
             return "ERROR: write_files: files_map not valid JSON"
     else:
         fm = files_map
+        
     
     written = []
     for rel, content in fm.items():
@@ -119,4 +164,10 @@ def archive_project(project_id: str) -> str:
     shutil.make_archive(str(archive_path.with_suffix('')), 'zip', base)
     return f"✅ ARCHIVED project '{project_id}': {archive_path}"
 
-tools = [write_files, run_shell, list_files, archive_project]
+search_tool = Tool(
+    name="web-search",
+    description="Gets the latest information for packages , libraries , dependencies for development purposes",
+    func=serpapi.run
+)
+
+tools = [run_shell, write_files , archive_project, list_files, list_files_tool, read_file_tool]
