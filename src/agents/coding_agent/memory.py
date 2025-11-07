@@ -4,6 +4,7 @@ from typing import List, Annotated, Dict, Any
 from langgraph.graph.message import add_messages, BaseMessage
 from langgraph.prebuilt.chat_agent_executor import AgentState
 from langgraph.checkpoint.sqlite import SqliteSaver
+import os
 
 def pre_model_hook(state):
     trimmed_messages = trim_messages(
@@ -23,8 +24,9 @@ class ProjectStateSchema(AgentState):
     remaining_steps: int # type: ignore[override]
     context: Dict[str, Any]
 
+DB_PATH = os.path.join(os.path.dirname(__file__), "agent_memory.sqlite")
 
 sqlite_connection = sqlite_connect(
-    database="agent_memory.sqlite", check_same_thread=False
+    database=DB_PATH, check_same_thread=False
 )
 checkpointer = SqliteSaver(sqlite_connection)
