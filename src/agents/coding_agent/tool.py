@@ -6,7 +6,13 @@ from pathlib import Path
 import os
 from typing import List
 
-BASE_DIR = Path("/home/vansh/synthra/projects")
+DIR = os.getenv("BASE_DIR")
+
+if(DIR == "" or DIR == None):
+    print("No Base dir added, exiting out...")
+    os._exit(0)
+
+BASE_DIR = Path(DIR)
 BASE_DIR.mkdir(exist_ok=True)
 
 params = {

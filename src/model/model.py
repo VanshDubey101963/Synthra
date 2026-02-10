@@ -1,5 +1,5 @@
 import socket
-from langchain_community.llms import Ollama
+# from langchain_community.llms import Ollama
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 
@@ -14,13 +14,9 @@ def is_connected(host="8.8.8.8", port=53, timeout=3) -> bool:
         return False
 
 def get_llm():
-    if is_connected():
-        return ChatGoogleGenerativeAI(
-            model="gemini-2.5-flash", 
-            temperature=0
-        )
-    else:
-        print("❌ Offline: Using local Ollama model")
-        return Ollama(model="stablelm2:1.1b")
-
+    return ChatGoogleGenerativeAI(
+        model="gemini-2.5-flash", 
+        temperature=0
+    )
+    
 llm = get_llm()
