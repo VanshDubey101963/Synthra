@@ -3,12 +3,10 @@ import subprocess
 import json
 import shutil
 from pathlib import Path
-from langchain_community.utilities import SerpAPIWrapper
-from langchain.agents import Tool
 import os
 from typing import List
 
-BASE_DIR = Path("/home/sanyam/synthra/projects")
+BASE_DIR = Path("/home/vansh/synthra/projects")
 BASE_DIR.mkdir(exist_ok=True)
 
 params = {
